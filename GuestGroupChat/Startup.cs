@@ -1,6 +1,8 @@
 using System;
 using System.Threading;
 using GuestGroupChat.EventHandlers;
+using GuestGroupChat.Services;
+using GuestGroupChat.Services.Clients.CommunicationsGateway;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -51,6 +53,8 @@ namespace GuestGroupChat
             services.AddSingleton<IConsumeFromEda, ReservationConsumer>();
 
             services.AddSingleton<IHostedService, GuestGroupChat>();
+            services.AddTransient<ICommunicationsGatewayClient, CommunicationsGatewayClient>();
+            services.AddTransient<ICommunicationsGatewayService, CommunicationsGatewayService>();
         }
 
         public void Configure()
