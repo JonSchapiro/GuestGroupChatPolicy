@@ -9,15 +9,15 @@ namespace GuestGroupChat.Services
 {
     public static class ChatService
     {
-        private static readonly string _apiLink = "https://api.chat-api.com/instance182160/group";
+        private static readonly string _apiLink = "https://api.chat-api.com/instance182160/";
         private static readonly string _token = "9qjeeasoqn6xv7yl";
 
         public static async System.Threading.Tasks.Task<string> CreateNewChatAsync(DateTime reservationDate)
         {
-             var phone = "";
+             var phone = "4407378985181";
             var data = new Dictionary<string, string>()
             {
-                { "groupName", "Restaurant Reservation - " + reservationDate.ToShortDateString()},
+                { "groupName", "Restaurant Reservation" },
                 { "phones", phone },
                 { "messageText", "" }
             };
