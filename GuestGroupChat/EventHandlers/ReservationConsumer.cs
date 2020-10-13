@@ -1,7 +1,9 @@
 using System;
+using GuestGroupChat.Services;
 using OT.EDA.Bus;
 using OT.EDA.Consumers;
 using OT.Messaging.MDA.Consumer.Reservation.Events;
+using System.Threading.Tasks;
 
 namespace GuestGroupChat.EventHandlers
 {
@@ -26,7 +28,8 @@ namespace GuestGroupChat.EventHandlers
         {
             return async edaEvent =>
             {
-                Console.WriteLine("Rid: " + edaEvent.UpdatedState.RestaurantID + "ConfNumber" + edaEvent.UpdatedState.ConfirmationNumber + "GPID: " + edaEvent.UpdatedState.GPID);
+                var chatInfo = await ChatService.CreateNewChatAsync(edaEvent.UpdatedState.ReservationDateTimeUTC);
+                Console.WriteLine("Rid: " + edaEvent.UpdatedState.RestaurantID + "-ConfNumber" + edaEvent.UpdatedState.ConfirmationNumber + "-GPID: " + edaEvent.UpdatedState.GPID + "-Chat:" + chatInfo);
             };
         }
     }
